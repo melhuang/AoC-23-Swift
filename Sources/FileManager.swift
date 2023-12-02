@@ -8,8 +8,12 @@ public struct FileLoader {
     private init() { }
     
     // Keep around in case we need to fallback to it.
-public static func load(file: String) -> [String]? {
-        guard let fileUrl = Bundle.main.url(forResource: file, withExtension: "txt") else {
+    public static func load(file: String) -> [String]? {
+        guard let fileUrl = Bundle.module.url(
+            forResource: file,
+            withExtension: "txt",
+            subdirectory: "Data"
+        ) else {
             return nil
         }
         
@@ -21,7 +25,11 @@ public static func load(file: String) -> [String]? {
     }
     
     public static func load<T: Parseable>(file: String) -> [T] {
-        let fileUrl = Bundle.main.url(forResource: file, withExtension: "txt")!
+        let fileUrl = Bundle.module.url(
+            forResource: file,
+            withExtension: "txt",
+            subdirectory: "Data"
+        )!
         let content = try! String(contentsOf: fileUrl, encoding: .utf8)
             .components(separatedBy: "\n")
             .filter { !$0.isEmpty }

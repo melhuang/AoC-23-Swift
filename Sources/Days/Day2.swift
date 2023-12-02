@@ -1,4 +1,29 @@
+//
+//  Day2.swift
+//
+//
+//  Created by Michael Fransen on 12/2/23.
+//
+
 import Foundation
+
+struct Day2: Day {
+    private let games: [Game] = FileLoader.load(file: "Day_2")
+    
+    func partOne() {
+        let sum = games.filter { $0.isValid(maxRed: 12, maxGreen: 13, maxBlue: 14)}
+            .map(\.id)
+            .reduce(0, +)
+        
+        print(sum)
+    }
+    
+    func partTwo() {
+        let sum = games.map { $0.power }.reduce(0, +)
+
+        print(sum)
+    }
+}
 
 struct Round {
     let redCount: Int
@@ -6,19 +31,19 @@ struct Round {
     let blueCount: Int
     
     init(input: String) {
-        if let match = input.firstMatch(of: /(\d+) red/) {
+        if let match = input.firstMatch(of: #/(\d+) red/#) {
             redCount = Int(match.1)!
         } else {
             redCount = 0
         }
         
-        if let match = input.firstMatch(of: /(\d+) green/) {
+        if let match = input.firstMatch(of: #/(\d+) green/#) {
             greenCount = Int(match.1)!
         } else {
             greenCount = 0
         }
         
-        if let match = input.firstMatch(of: /(\d+) blue/) {
+        if let match = input.firstMatch(of: #/(\d+) blue/#) {
             blueCount = Int(match.1)!
         } else {
             blueCount = 0
@@ -35,10 +60,10 @@ struct Game: Parseable {
     let rounds: [Round]
     
     init(input: String) {
-        let gameRange = input.ranges(of: /\d+/).first!
+        let gameRange = input.ranges(of: #/\d+/#).first!
         id = Int(input[gameRange])!
 
-        let prefixRange = input.ranges(of: /Game \d+:\ /).first!
+        let prefixRange = input.ranges(of: #/Game \d+:\ /#).first!
         rounds = input[prefixRange.upperBound...]
             .split(separator: ";")
             .map(String.init)
@@ -79,22 +104,3 @@ struct Game: Parseable {
         return total
     }
 }
-
-let games: [Game] = FileLoader.load(file: "Day_2")
-
-func partOne() {
-    let sum = games.filter { $0.isValid(maxRed: 12, maxGreen: 13, maxBlue: 14)}
-        .map(\.id)
-        .reduce(0, +)
-    
-    print(sum)
-}
-
-func partTwo() {
-    let sum = games.map { $0.power }.reduce(0, +)
-
-    print(sum)
-}
-
-// partOne()
-partTwo()
