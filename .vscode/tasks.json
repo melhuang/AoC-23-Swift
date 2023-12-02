@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "swift",
+			"args": [
+				"build",
+				"--product",
+				"aoc"
+			],
+			"cwd": "/Users/michaelfransen/Developer/AoC-2023",
+			"disableTaskQueue": true,
+			"problemMatcher": [
+				"$swiftc"
+			],
+			"group": "build",
+			"label": "swift: Build Debug aoc",
+			"detail": "swift build --product aoc"
+		}
+	]
+}
