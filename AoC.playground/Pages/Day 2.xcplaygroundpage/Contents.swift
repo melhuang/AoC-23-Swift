@@ -1,7 +1,5 @@
 import Foundation
 
-let lines = FileLoader.load(file: "Day_2")!
-
 struct Round {
     let redCount: Int
     let greenCount: Int
@@ -32,7 +30,7 @@ struct Round {
     }
 }
 
-struct Game {
+struct Game: Parseable {
     let id: Int
     let rounds: [Round]
     
@@ -82,14 +80,9 @@ struct Game {
     }
 }
 
-func partOne() {
-    var games = [Game]()
+let games: [Game] = FileLoader.load(file: "Day_2")
 
-    for line in lines {
-        guard !line.isEmpty else { continue }
-        games.append(Game(input: line))
-    }
-    
+func partOne() {
     let sum = games.filter { $0.isValid(maxRed: 12, maxGreen: 13, maxBlue: 14)}
         .map(\.id)
         .reduce(0, +)
@@ -98,15 +91,8 @@ func partOne() {
 }
 
 func partTwo() {
-    var games = [Game]()
-
-    for line in lines {
-        guard !line.isEmpty else { continue }
-        games.append(Game(input: line))
-    }
-    
     let sum = games.map { $0.power }.reduce(0, +)
-    
+
     print(sum)
 }
 
