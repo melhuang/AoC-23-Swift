@@ -8,7 +8,6 @@ let package = Package(
     platforms: [.macOS(.v14)],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", .upToNextMajor(from: "1.2.3")),
-        .package(url: "https://github.com/apple/swift-format.git", branch:("release/5.9")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.

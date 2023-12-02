@@ -12,10 +12,10 @@ import Foundation
 struct AdventOfCode: ParsableCommand {
     @Argument(help: "The day to run.")
     var dayNumber: Int
-    
+
     @Argument(help: "The part to run.")
     var part: Int
-    
+
     func run() throws {
         switch part {
         case 1:
@@ -26,7 +26,7 @@ struct AdventOfCode: ParsableCommand {
             fatalError("You specified an invalid day.")
         }
     }
-    
+
     private var day: Day {
         switch dayNumber {
         case 1:
