@@ -1,10 +1,3 @@
-//
-//  Day1.swift
-//  
-//
-//  Created by Michael Fransen on 12/2/23.
-//
-
 struct Day1: Day {
     private let results = FileLoader.load(file: "Day_1")!
     
