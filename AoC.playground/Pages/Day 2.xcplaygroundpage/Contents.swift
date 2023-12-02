@@ -37,8 +37,8 @@ struct Game: Parseable {
     init(input: String) {
         let gameRange = input.ranges(of: /\d+/).first!
         id = Int(input[gameRange])!
-        
-        let prefixRange = input.ranges(of: try! Regex(#"Game \d+: "#)).first!
+
+        let prefixRange = input.ranges(of: /Game \d+:\ /).first!
         rounds = input[prefixRange.upperBound...]
             .split(separator: ";")
             .map(String.init)
