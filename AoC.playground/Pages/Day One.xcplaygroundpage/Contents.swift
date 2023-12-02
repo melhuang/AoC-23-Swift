@@ -2,7 +2,6 @@ import AoC_Sources
 
 let results = FileLoader.load(file: "Day_1")!
 
-
 func partOne() {
     var total = 0
 
@@ -46,8 +45,6 @@ func partTwo() {
 
         let firstNumber = firstValue(word: string)
         let lastNumber = lastValue(word: string)
-        
-        print("Value: \(string) result: \(String(firstNumber) + String(lastNumber))")
 
         total += Int(String(firstNumber) + String(lastNumber))!
     }
@@ -83,7 +80,6 @@ func partTwo() {
         
         for key in keys {
             if let firstIndex = word.lastIndex(of: key) {
-                // print("key \(key) first index \(firstIndex) highest index \(highestIndex)")
                 if let index = highestIndex {
                     if firstIndex > index {
                         highestIndex = firstIndex
@@ -114,5 +110,6 @@ extension String {
     }
 }
 
+// partOne()
 partTwo()
 
