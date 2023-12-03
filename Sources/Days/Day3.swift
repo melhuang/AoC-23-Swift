@@ -1,3 +1,8 @@
+struct Location: Hashable {
+    let x: Int
+    let y: Int
+}
+
 struct Schematic {
     private let input: [[Character]]
 
@@ -44,6 +49,103 @@ struct Schematic {
         }
 
         return sum
+    }
+
+    func secondPartSum() -> Int {
+        var gears = [Location: [Int]]()
+
+        for (rowIndex, row) in input.enumerated() {
+            var numberCharacters = [Character]()
+
+            for (characterIndex, character) in row.enumerated() {
+                if character.isNumber {
+                    numberCharacters.append(character)
+
+                    if characterIndex == row.count - 1 {
+                        if let location = adjacentGear(
+                            row: rowIndex,
+                            startIndex: characterIndex - numberCharacters.count + 1,
+                            length: numberCharacters.count
+                        ) {
+                            let part = Int(String(numberCharacters))!
+                            gears[location] == nil
+                                ? gears[location] = [part] : gears[location]?.append(part)
+                        }
+
+                        numberCharacters.removeAll()
+                    }
+
+                } else {
+                    if !numberCharacters.isEmpty {
+                        if let location = adjacentGear(
+                            row: rowIndex, startIndex: characterIndex - numberCharacters.count,
+                            length: numberCharacters.count)
+                        {
+                            let part = Int(String(numberCharacters))!
+                            gears[location] == nil
+                                ? gears[location] = [part] : gears[location]?.append(part)
+                        }
+
+                        numberCharacters.removeAll()
+                    }
+                }
+            }
+        }
+
+        gears.forEach { print("x: \($0.key.x) y: \($0.key.y) numbers: \($0.value)") }
+
+        return gears.values.filter { $0.count == 2 }.map { $0.reduce(1, *) }.reduce(0, +)
+    }
+
+    func adjacentGear(row: Int, startIndex: Int, length: Int) -> Location? {
+        // Leading character check
+        if startIndex != 0 && input[row][startIndex - 1].isGear {
+            return Location(x: startIndex - 1, y: row)
+        }
+
+        // Trailing character check
+        if startIndex + length < input[row].count - 1
+            && input[row][startIndex + length].isGear
+        {
+            return Location(x: startIndex + length, y: row)
+        }
+
+        if row > 0 {
+            let leftIndex = if startIndex == 0 { 0 } else { startIndex - 1 }
+
+            let rightIndex =
+                if startIndex + length == input[row].count {
+                    input[row].count - 1
+                } else {
+                    startIndex + length
+                }
+
+            for index in leftIndex...rightIndex {
+                if input[row - 1][index].isGear {
+                    return Location(x: index, y: row - 1)
+                }
+            }
+        }
+
+        // Bottom row check
+        if row < input.count - 1 {
+            let leftIndex = if startIndex == 0 { 0 } else { startIndex - 1 }
+
+            let rightIndex =
+                if startIndex + length == input[row].count {
+                    input[row].count - 1
+                } else {
+                    startIndex + length
+                }
+
+            for index in leftIndex...rightIndex {
+                if input[row + 1][index].isGear {
+                    return Location(x: index, y: row + 1)
+                }
+            }
+        }
+
+        return nil
     }
 
     func isAdjacentToSymbol(row: Int, startIndex: Int, length: Int) -> Bool {
@@ -103,6 +205,10 @@ extension Character {
     var isSymbol: Bool {
         !self.isNumber && self != "."
     }
+
+    var isGear: Bool {
+        self == "*"
+    }
 }
 
 struct Day3: Day {
@@ -113,7 +219,7 @@ struct Day3: Day {
     }
 
     func partTwo() {
-        print("Part 2")
+        print(schematic.secondPartSum())
     }
 }
 
