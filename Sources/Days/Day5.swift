@@ -105,18 +105,6 @@ struct Day5: Day {
     func partTwo() {
         var lines = input
         let seedInts: [Int] = input.first!.components(separatedBy: .whitespaces).compactMap { Int($0) }
-//        var seeds = Set<Int>()
-//        while !seedRanges.isEmpty {
-//            for i in seedRanges[0]..<(seedRanges[0] + seedRanges[1]) {
-//                seeds.insert(i)
-//            }
-//            if seedRanges.count == 2 {
-//                break
-//            }
-//            seedRanges = Array(seedRanges[2...])
-//            print("chopped")
-//            print(seedRanges.count)
-//        }
         
         var soils = [MapRange]()
         var ferts = [MapRange]()
@@ -137,8 +125,6 @@ struct Day5: Day {
             
             lines = Array(lines[(ferts.count+2)...])
             
-            print("finished ferts")
-
             waters = findNextRanges(input: lines)
             
             lines = Array(lines[(waters.count+2)...])
@@ -153,14 +139,11 @@ struct Day5: Day {
             
             humids = findNextRanges(input: lines)
             
-            print("finished humids")
-
             lines = Array(lines[(humids.count+2)...])
 
             locs = findNextRanges(input: lines).sorted(by: { range1, range2 in
                 range1.source < range2.source
             })
-            print("finished locs")
         }
         
         findRanges()
