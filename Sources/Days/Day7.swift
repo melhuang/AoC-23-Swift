@@ -123,6 +123,12 @@ struct Day7: Day {
                     if lhsChar == rhsChar {
                         continue
                     } else {
+                        // if it's a j then
+                        if lhsChar == .J {
+                            return true
+                        } else if rhsChar == .J {
+                            return false
+                        }
                         return lhsChar < rhsChar
                     }
                 }
@@ -132,6 +138,8 @@ struct Day7: Day {
             return false
         }
         
+
+        
         let string: String
         let bid: Int
         var handType: HandType = .high
@@ -140,17 +148,36 @@ struct Day7: Day {
             self.string = string
             self.bid = bid
             
-            // get hand type
-            var distinctVals = Set<Character>()
-            let handArray = Array(string)
-            handArray.forEach { distinctVals.insert($0) }
+            var handArray = string.map { Rank(rawValue: String($0))! }
             
+            func calculateJ() -> Rank {
+                // handle Js
+                let handArrayNoJs = handArray.filter { $0 != .J }.sorted(by: { $0 > $1 })
+                
+                let counts = Dictionary(grouping: handArrayNoJs, by: { $0 }).sorted(by: { $0.value.count > $1.value.count })
+                
+                return counts.first?.key ?? Rank.A
+            }
+            
+            
+            for i in 0..<string.count {
+                let replacement = calculateJ()
+                if handArray[i] == .J {
+                    handArray[i] = replacement
+                }
+            }
+            
+            // get hand type
+            var distinctVals = Set<Rank>()
+            handArray.forEach { distinctVals.insert($0) }
+                        
+            // i want distinct vals
             switch distinctVals.count {
             case 1:
                 self.handType = .five
             case 2:
                 // if count of the first char is 1 or four, it's .four
-                let charCount = string.filter { $0 == handArray[0] }.count
+                let charCount = handArray.filter { $0 == handArray[0] }.count
                 if charCount == 1 || charCount == 4 {
                     self.handType = .four
                 } else {
@@ -158,11 +185,13 @@ struct Day7: Day {
                 }
             case 3:
                 var set = false
+                // if any of the first 3 chars have 3 occurrences, it's three of a kind
                 for i in 0...2 {
-                    let count = string.filter { $0 == handArray[i] }.count
+                    let count = handArray.filter { $0 == handArray[i] }.count
                     if count == 3 {
                         self.handType = .three
                         set = true
+                        break
                     }
                 }
                 if !set {
@@ -200,6 +229,22 @@ struct Day7: Day {
     }
     
     func partTwo() {
-        //
+        let input: [String] = FileLoader.load(file: "Day_7")!
+        var hands = [Hand]()
+        for line in input {
+            if line.isEmpty { continue }
+            let chunks = line.components(separatedBy: .whitespaces)
+            let string = chunks[0]
+            let bid = Int(chunks[1])!
+            let hand = Hand(string, bid: bid)
+            hands.append(hand)
+        }
+        hands.sort()
+
+        var total = 0
+        for (index, hand) in hands.enumerated() {
+            total += (index + 1) * hand.bid
+        }
+        print("answer: \(total)")
     }
 }
