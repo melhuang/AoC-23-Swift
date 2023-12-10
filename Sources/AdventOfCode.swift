@@ -43,6 +43,8 @@ struct AdventOfCode: ParsableCommand {
             return Day6()
         case 7:
             return Day7()
+        case 8:
+            return Day8()
         default:
             return Day1()
         }
