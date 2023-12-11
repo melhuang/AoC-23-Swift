@@ -34,6 +34,38 @@
             endingLineNumber = "81"
             landmarkName = "jay"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "5E4F6642-BA41-4990-9474-940D624257D1 - 321830b70b8061f6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "aoc.Direction.jay.getter : aoc.Direction"
+                  moduleName = "aoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "5E4F6642-BA41-4990-9474-940D624257D1 - 321830b70b806197"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "aoc.Direction.jay.getter : aoc.Direction"
+                  moduleName = "aoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -50,6 +82,38 @@
             endingLineNumber = "96"
             landmarkName = "seven"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "46AA8C4A-F8C6-4A41-82CD-2D3CC48187F3 - 2f2b0bb033c78de6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "aoc.Direction.seven.getter : aoc.Direction"
+                  moduleName = "aoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "97"
+                  endingLineNumber = "97"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "46AA8C4A-F8C6-4A41-82CD-2D3CC48187F3 - 2f2b0bb033c78dd9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "aoc.Direction.seven.getter : aoc.Direction"
+                  moduleName = "aoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "96"
+                  endingLineNumber = "96"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -66,6 +130,38 @@
             endingLineNumber = "89"
             landmarkName = "el"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "4283C955-D737-40C6-BAC8-4931F4E54714 - b4a6e5728f303ff2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "aoc.Direction.el.getter : aoc.Direction"
+                  moduleName = "aoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "4283C955-D737-40C6-BAC8-4931F4E54714 - b4a6e5728f303f93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "aoc.Direction.el.getter : aoc.Direction"
+                  moduleName = "aoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,7 +180,7 @@
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "80AD2EE3-A953-4190-B351-CEEA3D7498D0 - 478f5284d08d3b2e"
+                  uuid = "80AD2EE3-A953-4190-B351-CEEA3D7498D0 - 478f5284d08d3bcf"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -94,9 +190,9 @@
                   urlString = "file:///Users/melissa.huang/Documents/projects/AoC-23-Swift/Sources/Days/Day10.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "96">
                </Location>
                <Location
                   uuid = "80AD2EE3-A953-4190-B351-CEEA3D7498D0 - 478f5284d08d3b2e"
@@ -111,25 +207,9 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
                   endingLineNumber = "103"
-                  offsetFromSymbolStart = "88">
+                  offsetFromSymbolStart = "84">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "040FCAA3-F4E4-452F-A826-D29F9000542A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sources/Days/Day10.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
-            landmarkName = "partOne()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

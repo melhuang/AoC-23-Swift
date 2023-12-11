@@ -12,15 +12,7 @@ public typealias Character = Swift.Character
 
 
 public enum PipeType {
-//    | is a vertical pipe connecting north and south.      N
-//    - is a horizontal pipe connecting east and west.  W  J  L  E
-//    L is a 90-degree bend connecting north and east.     7  F
-//    J is a 90-degree bend connecting north and west.      S
-//    7 is a 90-degree bend connecting south and west.
-//    F is a 90-degree bend connecting south and east.
-//    . is ground; there is no pipe in this tile.
-//    S is the starting position of the animal; there is a pipe on this tile, but your sketch doesn't show what shape the pipe has.
-    case vert, horiz, el, jay, seven, eff, dot
+    case vert, horiz, el, jay, seven, eff, dot, ess
     
     public init(rawValue: Character) {
         switch rawValue {
@@ -31,7 +23,15 @@ public enum PipeType {
         case "7": self = .seven
         case "F": self = .eff
         case ".": self = .dot
+        case "S": self = .ess
         default: self = .dot
+        }
+    }
+    
+    var isValid: Bool {
+        switch self {
+        case .vert, .seven, .eff: true
+        default: false
         }
     }
     
@@ -175,22 +175,54 @@ struct Day10: Day {
                 localTotal += 1
             }
             if nextPoint == start {
-                print("steps back to start: \(localTotal)")
                 print("steps: \((localTotal + 1) / 2)")
                 continue
             }
         }
-        
-//        print("answer1 is: \(total)")
-        // answer is 8
     }
     
     func partTwo() {
-        var total = 0
+        let grid = Grid.parse(input)
+        let start = grid.start
+        var loopPipes = Set<Point>()
+        var nextPoint = start
+        loopPipes.insert(nextPoint)
+        var direction = Direction.east
+        // toward is the direction i'm moving in
+        nextPoint = start + direction.offset
+        var nextValue = grid.points[nextPoint]
+        var pipeType = PipeType(rawValue: nextValue!)
+        while nextPoint != start && pipeType != .dot {
+            pipeType = PipeType(rawValue: nextValue!)
+            loopPipes.insert(nextPoint)
+            direction = pipeType.pipeTurn(toward: direction)
+            nextPoint = nextPoint + direction.offset
+            nextValue = grid.points[nextPoint]
+        }
         
-        // get total numPipes (13732)
-        // for minY to maxY of loop pipes
-        // for minx to maxX of loop pipes 
+        var total = 0
+        for y in (1...grid.maxY-1) {
+            for x in (grid.minX...grid.maxX-1) {
+                var count = 0
+                if loopPipes.contains(Point(x, y)) {
+                    continue
+                }
+                for countX in (x+1...grid.maxX) {
+                    let countPoint = Point(countX, y)
+                    let value = grid.points[countPoint]
+                    let pipeType = PipeType(rawValue: value!)
+                    if pipeType.isValid && loopPipes.contains(countPoint) {
+                        count += 1
+                    }
+                }
+                // if loop pipes is odd, counts as a total
+                if !count.isMultiple(of: 2) {
+                    total += 1
+                }
+            }
+        }
+        
+        // first answer is 10
         print("answer2 is: \(total)")
     }
 }

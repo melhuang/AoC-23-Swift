@@ -15,7 +15,7 @@ public struct Point: Hashable {
     public let x, y: Int
     
     public static let zero = Point(0, 0)
-    
+        
     public init(_ x: Int, _ y: Int) {
         self.x = x
         self.y = y
