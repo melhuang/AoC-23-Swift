@@ -106,7 +106,7 @@ public enum Direction {
         
 }
 
-public struct Grid {
+public struct Day10Grid {
     public let points: [Point: Character]
     public let minX: Int
     public let maxX: Int
@@ -127,7 +127,7 @@ public struct Grid {
     }
     
     
-    public static func parse(_ data: [String]) -> Grid {
+    public static func parse(_ data: [String]) -> Day10Grid {
         var points = [Point: Character]()
         var start = Point.zero
         
@@ -141,19 +141,18 @@ public struct Grid {
             }
         }
         
-        return Grid(start: start, points: points,
+        return Day10Grid(start: start, points: points,
                     minX: 0, maxX: data[0].count - 1,
                     minY: 0, maxY: data.count - 1)
     }
      
 }
 
-
 struct Day10: Day {
 
     func partOne() {
-        let grid = Grid.parse(input)
-        let start = grid.start
+        let Day10Grid = Day10Grid.parse(input)
+        let start = Day10Grid.start
 
         var nextPoint = start
         let allDirs: [Direction] = [.north, .east]
@@ -164,14 +163,14 @@ struct Day10: Day {
             var direction = toward
             // toward is the direction i'm moving in
             nextPoint = start + direction.offset
-            var nextValue = grid.points[nextPoint]
+            var nextValue = Day10Grid.points[nextPoint]
             if nextValue == nil { continue }
             var pipeType = PipeType(rawValue: nextValue!)
             while nextPoint != start && pipeType != .dot {
                 pipeType = PipeType(rawValue: nextValue!)
                 direction = pipeType.pipeTurn(toward: direction)
                 nextPoint = nextPoint + direction.offset
-                nextValue = grid.points[nextPoint]
+                nextValue = Day10Grid.points[nextPoint]
                 localTotal += 1
             }
             if nextPoint == start {
@@ -182,34 +181,34 @@ struct Day10: Day {
     }
     
     func partTwo() {
-        let grid = Grid.parse(input)
-        let start = grid.start
+        let Day10Grid = Day10Grid.parse(input)
+        let start = Day10Grid.start
         var loopPipes = Set<Point>()
         var nextPoint = start
         loopPipes.insert(nextPoint)
         var direction = Direction.east
         // toward is the direction i'm moving in
         nextPoint = start + direction.offset
-        var nextValue = grid.points[nextPoint]
+        var nextValue = Day10Grid.points[nextPoint]
         var pipeType = PipeType(rawValue: nextValue!)
         while nextPoint != start && pipeType != .dot {
             pipeType = PipeType(rawValue: nextValue!)
             loopPipes.insert(nextPoint)
             direction = pipeType.pipeTurn(toward: direction)
             nextPoint = nextPoint + direction.offset
-            nextValue = grid.points[nextPoint]
+            nextValue = Day10Grid.points[nextPoint]
         }
         
         var total = 0
-        for y in (1...grid.maxY-1) {
-            for x in (grid.minX...grid.maxX-1) {
+        for y in (1...Day10Grid.maxY-1) {
+            for x in (Day10Grid.minX...Day10Grid.maxX-1) {
                 var count = 0
                 if loopPipes.contains(Point(x, y)) {
                     continue
                 }
-                for countX in (x+1...grid.maxX) {
+                for countX in (x+1...Day10Grid.maxX) {
                     let countPoint = Point(countX, y)
-                    let value = grid.points[countPoint]
+                    let value = Day10Grid.points[countPoint]
                     let pipeType = PipeType(rawValue: value!)
                     if pipeType.isValid && loopPipes.contains(countPoint) {
                         count += 1
